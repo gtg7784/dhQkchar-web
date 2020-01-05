@@ -63,7 +63,7 @@ class App extends React.Component<Props, State> {
               alt=""
             />
             <div>차종: {data.type}</div>
-            <div>연식: {2020 - data.manufacture}</div>
+            <div>연식: {data.manufacture}</div>
             <div>평균 시속: {data.average}km</div>
             <div>번호: {data.number}</div>
           </div>
