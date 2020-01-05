@@ -12,6 +12,8 @@ class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
+    axios.defaults.baseURL = "http://3.16.138.58:4000/api";
+
     this.state = {
       data: [
         {
@@ -27,23 +29,26 @@ class App extends React.Component<Props, State> {
         { _id: "5e10e98b48b1a018769d89af", color: "GREEN", time: 37, __v: 0 }
       ]
     };
+
+    this.onDataUpdate = this.onDataUpdate.bind(this);
   }
 
   componentDidMount() {
-    axios
-      .get(
-        "http://ec2-3-16-138-58.us-east-2.compute.amazonaws.com:4000/api/signal/info"
-      )
-      .then((res: any) => this.setState({ signal: res }));
-    console.log(this.state.signal[0].color);
-    axios
-      .get(
-        "http://ec2-3-16-138-58.us-east-2.compute.amazonaws.com:4000/api/car/info"
-      )
-      .then((res: any) => this.setState({ data: res }));
-    console.log(this.state.data);
-    this.setState({});
+    setInterval(() => this.onDataUpdate(), 20);
+    // return this.onDataUpdate();
   }
+
+  onDataUpdate = async () => {
+    axios
+      .get("/signal/info")
+      .then((res: any) => this.setState({ signal: res.data }));
+    console.log(this.state.signal);
+    axios
+      .get("/car/info")
+      .then((res: any) => this.setState({ data: res.data }));
+    console.log(this.state.data);
+  };
+
   render() {
     const { data, signal } = this.state;
     return (
@@ -54,7 +59,7 @@ class App extends React.Component<Props, State> {
         <div>
           <div>
             <img
-              src="http://openimage.interpark.com/goods_image_big/8/5/3/3/5476048533_l.jpg"
+              src="http://item.ssgcdn.com/01/15/12/item/1000024121501_i1_1200.jpg"
               alt=""
             />
             <div>차종: {data.type}</div>
@@ -68,20 +73,6 @@ class App extends React.Component<Props, State> {
               <div>
                 <div>현재 신호: {signal.color}</div>
                 <div>점등 시간: {signal.time}초</div>
-              </div>
-            </div>
-            <div>
-              <h1>난곡사거리</h1>
-              <div>
-                <div>현재 신호: red</div>
-                <div>점등 시간: 10초</div>
-              </div>
-            </div>
-            <div>
-              <h1>가산디지털단지역 사거리</h1>
-              <div>
-                <div>현재 신호: red</div>
-                <div>점등 시간: 10초</div>
               </div>
             </div>
           </div>

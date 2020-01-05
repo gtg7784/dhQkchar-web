@@ -1,7 +1,7 @@
 .App {
   text-align: center;
 
-  &>header {
+  & > header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -9,13 +9,13 @@
     border-bottom: 1px solid #ccc;
     height: 56px;
 
-    &>h1 {
+    & > h1 {
       font-size: 24px;
       margin: 0px 32px;
     }
   }
 
-  &>div {
+  & > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,18 +24,18 @@
     margin-top: 60px;
     margin-left: 40px;
 
-    &>div {
+    & > div {
       width: calc(50% - 20px);
       height: 100%;
 
       &:nth-child(1) {
-        &>img {
+        & > img {
           width: 60%;
           height: 60%;
           margin-top: 16px;
         }
 
-        &>div {
+        & > div {
           width: 60%;
           text-align: left;
           margin-left: 20%;
@@ -46,7 +46,7 @@
       }
 
       &:nth-child(2) {
-        &>div {
+        & > div {
           display: flex;
           flex-direction: row;
           align-items: center;
@@ -55,15 +55,15 @@
           background-color: #56fc;
           margin-bottom: 20px;
 
-          &>h1 {
+          & > h1 {
             text-align: left;
             font-size: 18px;
             // color: ;
             margin: 0px;
           }
 
-          &>div {
-            width: 120px;
+          & > div {
+            width: 150px;
             text-align: left;
           }
         }
